@@ -1,0 +1,31 @@
+{% extends "search/layout.html" %}
+
+{% block body %}
+<form action="{% url 'Account' %}" enctype="multipart/form-data" method="POST" style="font-weight:bold;" >
+        {% csrf_token %}
+        
+        Image:<br> <input type="file" name="X"  accept="image/*">
+        Location:<br><input type="text" name="location"  placeholder="location" value="{{ gamer.location }}" >
+        <div>Status:<br> <input type="text" name="Description" placeholder="description" value="{{ gamer.status }}"></div>
+        {% for skill in skills %}
+        <div>
+        <input type="checkbox" name="check" id="{{ skill.id }}" value="{{ skill }}">
+        <label for="{{ skill.id }}">{{ skill }}</label>
+        </div>
+        {% endfor %}
+        games:
+        {% for game in games %}
+        <div>
+        <input type="checkbox" name="checkg" id="{{ game.id }}" value="{{ game }}">
+        <label for="{{ game.id }}">{{ game }}</label>
+        </div>
+        {% endfor %}
+        Level: <input type="text" name="level" value="{{ gamer.level }}" >
+        Matches: <input type="text" name="matches" value="{{ gamer.matches }}" >
+        Win: <input type="text" name="win" value="{{ gamer.win }}">  
+        Damage: <input type="text" name="damage" value="{{ gamer.damage }}">   
+        Kill: <input type="text" name="kill" value="{{ gamer.kill }}">       
+    <input type="submit" value="submit" class="done"></form>
+      
+
+{% endblock %}

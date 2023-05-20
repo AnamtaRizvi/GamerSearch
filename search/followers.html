@@ -1,0 +1,10 @@
+{% extends "search/layout.html" %}
+
+{% block body %}
+<h2>followers</h2>
+{% for follower in followers %}
+<ul>
+    <li>{{ follower }}</li>
+</ul>
+{% endfor %}
+{% endblock %}

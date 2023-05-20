@@ -1,0 +1,43 @@
+{% extends "search/layout.html" %}
+
+{% block body %}
+<h2>gamers</h2>
+<img src="media/{{ gamer.image }}" class="listimage" >
+<h4> {{ gamer.gamingname }}</h4>
+<div class="name"><strong>Name:</strong>  {{ gamer.fname }} </div>
+<strong> status </strong>  {{ gamer.status }}
+<strong> role </strong>  <li>{{ gamer.r1 }}</li> <li>{{ gamer.r2 }} </li><li>{{ gamer.r3 }}</li>
+<strong>level </strong> {{ gamer.level }}
+<strong>location </strong> {{ gamer.location }}
+            <strong>matches </strong> {{ gamer.matches }}
+            <strong> wins </strong>  {{ gamer.win }}
+            <strong> kill </strong>  {{ gamer.kill }}
+            <strong> damage </strong>  {{ gamer.damage }}
+            <strong> games </strong>  <ul>
+                <li>{{ gamer.g1 }}</li> <li>{{ gamer.g2 }} </li><li>{{ gamer.g3 }}</li>
+
+            </ul>
+            <div>
+                <a href="{% url 'f_wers' gamer.id %}">
+                <span>Followers: {{ fwerc }}</span>
+
+                </a>
+            </div>
+            <div>
+                <a href="{% url 'f_wings' gamer.id %}">
+                <span>Followings: {{ fwingc }}</span>
+                </a>
+            </div>
+           
+                
+                {% if message %}
+                <a class="login" href="{% url 'editacc' %}">edit</a>
+                {% else %}
+                <div ><form action="{% url 'follow' gamer.id %}" method="POST">
+                    {% csrf_token %}
+                    <button type="submit" name="follow" value="follow">Follow
+                    </form></div>
+                {% endif %}
+
+            
+            {% endblock %}

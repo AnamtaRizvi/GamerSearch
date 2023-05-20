@@ -1,0 +1,10 @@
+{% extends "search/layout.html" %}
+
+{% block body %}
+<h2>followings</h2>
+{% for following in followings %}
+<ul>
+    <li>{{ following.gamingname }}</li>
+</ul>
+{% endfor %}
+{% endblock %}

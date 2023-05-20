@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}Auctions{% endblock %}</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link href="{% static 'search/styles.css' %}" rel="stylesheet">
+    </head>
+    <body>
+         <div class="header">
+             <h1>GAMERS SEARCH ENGINE</h1>  
+         </div> 
+         <div class="foo">
+            {% if user.is_authenticated %}
+            <h2>Signed in as <strong>{{ user.username }}</strong>.</h2>
+                 <p>   <div class="added"><a class="login" href="{% url 'logout' %}">Log Out</a></div></p>
+                 <div class="added"><a class="login" href="{% url 'myaccount' %}">My Account</a>
+                   
+            {% else %}
+            <h2>Not signed in.</h2>
+           
+           <p> <div class="added"><a href="{% url 'login' %}" class="login">Log In</a> &emsp;
+            <a href="{% url 'register' %}" class="login">Register</a></div></p>
+            {% endif %}   
+           </div>
+           <form action=" {% url 'search' %}" method="POST">
+            {% csrf_token %}
+            <input type="text" name="s" placeholder="search">
+            <button type="submit" value="submit">search</button>
+            </form>
+         {% block body %}
+         {% endblock %}
+</body>
+</html>

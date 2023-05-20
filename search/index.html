@@ -1,0 +1,24 @@
+{% extends "search/layout.html" %}
+
+{% block body %}
+<h2>gamers</h2>
+{% for gamer in gamers %}
+<a href="{% url  'gprofile' gamer.id %}">
+    <div class="indexcon">
+<div><img src="media/{{ gamer.image }}" class="listimage" ></div>
+<strong>Name:</strong>  {{ gamer.fname }} 
+<strong> status </strong>  {{ gamer.status }}
+<strong> role </strong>  {{ gamer.r1 }}  {{ gamer.r2 }}  {{ gamer.r3 }}
+<strong>matches </strong> {{ gamer.matches }}
+<strong> wins </strong>  {{ gamer.win }}
+<strong> kill </strong>  {{ gamer.kill }}
+<strong> damage </strong>  {{ gamer.damage }}
+        </a>
+        <br>
+{% empty %}
+NO RESULT FOUND
+
+            {% endfor %}
+        </div>
+            {% endblock %}
+                 
